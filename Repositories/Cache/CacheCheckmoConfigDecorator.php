@@ -1,8 +1,8 @@
 <?php
 
-namespace Modules\IcommerceCheckmo\Repositories\Cache;
+namespace Modules\Icommercecheckmo\Repositories\Cache;
 
-use Modules\IcommerceCheckmo\Repositories\CheckmoConfigRepository;
+use Modules\Icommercecheckmo\Repositories\CheckmoConfigRepository;
 use Modules\Core\Repositories\Cache\BaseCacheDecorator;
 
 class CacheCheckmoconfigDecorator extends BaseCacheDecorator implements CheckmoConfigRepository

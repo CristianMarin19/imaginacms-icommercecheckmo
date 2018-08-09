@@ -1,13 +1,13 @@
 <?php
 
-namespace Modules\IcommerceCheckmo\Http\Controllers\Admin;
+namespace Modules\Icommercecheckmo\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
-use Modules\IcommerceCheckmo\Entities\Checkmoconfig;
-use Modules\IcommerceCheckmo\Http\Requests\CreateCheckmoConfigRequest;
-use Modules\IcommerceCheckmo\Http\Requests\UpdateCheckmoConfigRequest;
-use Modules\IcommerceCheckmo\Repositories\CheckmoConfigRepository;
+use Modules\Icommercecheckmo\Entities\Checkmoconfig;
+use Modules\Icommercecheckmo\Http\Requests\CreateCheckmoConfigRequest;
+use Modules\Icommercecheckmo\Http\Requests\UpdateCheckmoConfigRequest;
+use Modules\Icommercecheckmo\Repositories\CheckmoConfigRepository;
 use Modules\Core\Http\Controllers\Admin\AdminBaseController;
 use Modules\Setting\Repositories\SettingRepository;
 

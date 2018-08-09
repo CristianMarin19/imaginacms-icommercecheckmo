@@ -1,10 +1,10 @@
 <?php
 
-namespace Modules\IcommerceCheckmo\Http\Controllers;
+namespace Modules\Icommercecheckmo\Http\Controllers;
 
 use Mockery\CountValidator\Exception;
 
-use Modules\IcommerceCheckmo\Entities\Checkmoconfig;
+use Modules\Icommercecheckmo\Entities\Checkmoconfig;
 
 use Modules\Core\Http\Controllers\BasePublicController;
 use Route;

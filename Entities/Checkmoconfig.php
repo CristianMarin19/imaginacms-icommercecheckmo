@@ -1,6 +1,6 @@
 <?php
 
-namespace Modules\IcommerceCheckmo\Entities;
+namespace Modules\Icommercecheckmo\Entities;
 
 class Checkmoconfig
 {

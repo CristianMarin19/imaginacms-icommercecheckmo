@@ -1,6 +1,6 @@
 <?php
 
-namespace Modules\IcommerceCheckmo\Http\Requests;
+namespace Modules\Icommercecheckmo\Http\Requests;
 
 use Modules\Core\Internationalisation\BaseFormRequest;
 

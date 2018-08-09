@@ -1,6 +1,6 @@
 <?php
 
-use Modules\IcommerceCheckmo\Entities\Checkmoconfig;
+use Modules\Icommercecheckmo\Entities\Checkmoconfig;
 
 if (! function_exists('icommercecheckmo_get_configuration')) {
 

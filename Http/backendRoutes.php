@@ -5,7 +5,7 @@ use Illuminate\Routing\Router;
 
 $router->group(['prefix' =>'/icommercecheckmo'], function (Router $router) {
     $router->bind('checkmoconfig', function ($id) {
-        return app('Modules\IcommerceCheckmo\Repositories\CheckmoConfigRepository')->find($id);
+        return app('Modules\Icommercecheckmo\Repositories\CheckmoConfigRepository')->find($id);
     });
     $router->get('checkmoconfigs', [
         'as' => 'admin.icommercecheckmo.checkmoconfig.index',

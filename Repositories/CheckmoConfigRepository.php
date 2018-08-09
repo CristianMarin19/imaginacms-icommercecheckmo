@@ -1,6 +1,6 @@
 <?php
 
-namespace Modules\IcommerceCheckmo\Repositories;
+namespace Modules\Icommercecheckmo\Repositories;
 
 use Modules\Core\Repositories\BaseRepository;
 

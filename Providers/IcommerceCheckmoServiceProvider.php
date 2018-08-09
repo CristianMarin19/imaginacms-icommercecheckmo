@@ -1,12 +1,12 @@
 <?php
 
-namespace Modules\IcommerceCheckmo\Providers;
+namespace Modules\Icommercecheckmo\Providers;
 
 use Illuminate\Support\ServiceProvider;
 use Modules\Core\Traits\CanPublishConfiguration;
 use Modules\Core\Events\BuildingSidebar;
 use Modules\Core\Events\LoadingBackendTranslations;
-use Modules\IcommerceCheckmo\Events\Handlers\RegisterIcommerceCheckmoSidebar;
+use Modules\Icommercecheckmo\Events\Handlers\RegisterIcommerceCheckmoSidebar;
 
 class IcommerceCheckmoServiceProvider extends ServiceProvider
 {
@@ -56,15 +56,15 @@ class IcommerceCheckmoServiceProvider extends ServiceProvider
     private function registerBindings()
     {
         $this->app->bind(
-            'Modules\IcommerceCheckmo\Repositories\CheckmoConfigRepository',
+            'Modules\Icommercecheckmo\Repositories\CheckmoConfigRepository',
             function () {
-                $repository = new \Modules\IcommerceCheckmo\Repositories\Eloquent\EloquentCheckmoConfigRepository(new \Modules\IcommerceCheckmo\Entities\Checkmoconfig());
+                $repository = new \Modules\Icommercecheckmo\Repositories\Eloquent\EloquentCheckmoConfigRepository(new \Modules\Icommercecheckmo\Entities\Checkmoconfig());
 
                 if (! config('app.cache')) {
                     return $repository;
                 }
 
-                return new \Modules\IcommerceCheckmo\Repositories\Cache\CacheCheckmoConfigDecorator($repository);
+                return new \Modules\Icommercecheckmo\Repositories\Cache\CacheCheckmoConfigDecorator($repository);
             }
         );
 // add bindings
