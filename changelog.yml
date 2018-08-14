@@ -1,5 +1,8 @@
 url: https://github.com/imagina/asgardcms-icommercecheckmo
 versions:
+    "0.1.2":
+        removed:
+            - Migration
     "0.1.1":
         changed:
             - Namespace to Icommercecheckmo
