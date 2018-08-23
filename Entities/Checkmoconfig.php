@@ -9,9 +9,9 @@ class Checkmoconfig
     private $status;
     public function __construct()
     {
-        $this->description = setting('IcommerceCheckmo::description');
-        $this->image = setting('IcommerceCheckmo::image');
-        $this->status = setting('IcommerceCheckmo::status');
+        $this->description = setting('Icommercecheckmo::description');
+        $this->image = setting('Icommercecheckmo::image');
+        $this->status = setting('Icommercecheckmo::status');
     }
 
     public function getData()

@@ -14,7 +14,7 @@
     },
     "autoload-dev": {
         "psr-4": {
-            "Modules\\IcommerceCheckmo\\": ".",
+            "Modules\\Icommercecheckmo\\": ".",
             "Modules\\": "Modules/"
         }
     },
@@ -22,14 +22,14 @@
     "prefer-stable": true,
     "authors": [
         {
-            "name": "Nicolas Widart",
-            "email": "n.widart@gmail.com"
+            "name": "Imagina Dev",
+            "email": "soporte@imaginacolombia.com"
         }
     ],
     "extra": {
         "laravel": {
             "providers": [
-                "Modules\\IcommerceCheckmo\\Providers\\IcommerceCheckmoServiceProvider"
+                "Modules\\Icommercecheckmo\\Providers\\IcommerceCheckmoServiceProvider"
             ],
             "aliases": {
                 
@@ -38,7 +38,7 @@
     },
     "autoload": {
         "psr-4": {
-            "Modules\\IcommerceCheckmo\\": ""
+            "Modules\\Icommercecheckmo\\": ""
         }
     }
 }

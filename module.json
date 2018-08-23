@@ -1,5 +1,5 @@
 {
-    "name": "IcommerceCheckmo",
+    "name": "Icommercecheckmo",
     "alias": "icommercecheckmo",
     "description": "Check or Money - PaymentMethod Module to Icommerce",
     "keywords": [],
@@ -7,8 +7,8 @@
     "active": 1,
     "order": 1,
     "providers": [
-        "Modules\\IcommerceCheckmo\\Providers\\IcommerceCheckmoServiceProvider",
-        "Modules\\IcommerceCheckmo\\Providers\\RouteServiceProvider"
+        "Modules\\Icommercecheckmo\\Providers\\IcommerceCheckmoServiceProvider",
+        "Modules\\Icommercecheckmo\\Providers\\RouteServiceProvider"
     ],
     "aliases": {},
     "files": [
