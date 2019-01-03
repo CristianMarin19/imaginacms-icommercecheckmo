@@ -27,7 +27,7 @@ class RegisterIcommercecheckmoSidebar implements \Maatwebsite\Sidebar\SidebarExt
 
     public function handle(BuildingSidebar $sidebar)
     {
-        $sidebar->add($this->extendWith($sidebar->getMenu()));
+        //$sidebar->add($this->extendWith($sidebar->getMenu()));
     }
 
     /**
