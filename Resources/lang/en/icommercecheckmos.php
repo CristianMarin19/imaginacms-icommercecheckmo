@@ -1,6 +1,8 @@
 <?php
 
 return [
+    'single' => 'Check money order',
+    'description' => 'The description module',
     'list resource' => 'List icommercecheckmos',
     'create resource' => 'Create icommercecheckmos',
     'edit resource' => 'Edit icommercecheckmos',

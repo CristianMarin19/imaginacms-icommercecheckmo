@@ -4,6 +4,7 @@ namespace Modules\Icommercecheckmo\Database\Seeders;
 
 use Illuminate\Database\Seeder;
 use Illuminate\Database\Eloquent\Model;
+use Modules\Icommerce\Entities\PaymentMethod;
 
 class IcommercecheckmoDatabaseSeeder extends Seeder
 {
@@ -16,6 +17,17 @@ class IcommercecheckmoDatabaseSeeder extends Seeder
     {
         Model::unguard();
 
-        // $this->call("OthersTableSeeder");
+        $options['mainimage'] = "";
+
+        $params = array(
+            'title' => trans('icommercecheckmo::icommercecheckmos.single'),
+            'description' => trans('icommercecheckmo::icommercecheckmos.description'),
+            'name' => 'icommercecheckmo',
+            'status' => 0,
+            'options' => json_encode($options)
+        );
+
+        PaymentMethod::create($params);
+       
     }
 }
