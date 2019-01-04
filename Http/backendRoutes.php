@@ -27,7 +27,7 @@ $router->group(['prefix' =>'/icommercecheckmo'], function (Router $router) {
         'uses' => 'IcommerceCheckmoController@edit',
         'middleware' => 'can:icommercecheckmo.icommercecheckmos.edit'
     ]);
-    $router->put('icommercecheckmos/{icommercecheckmo}', [
+    $router->put('icommercecheckmos/{id}', [
         'as' => 'admin.icommercecheckmo.icommercecheckmo.update',
         'uses' => 'IcommerceCheckmoController@update',
         'middleware' => 'can:icommercecheckmo.icommercecheckmos.edit'
