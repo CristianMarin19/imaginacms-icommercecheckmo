@@ -1,5 +1,6 @@
 <?php
 
 return [
-    'name' => 'Icommercecheckmo'
+    'name' => 'Icommercecheckmo',
+    'paymentName' => 'icommercecheckmo'
 ];

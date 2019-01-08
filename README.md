@@ -6,9 +6,9 @@
 
 ## API
 
-### Index
+### Init (Parameters = orderID)
     
-    https://icommerce.imagina.com.co/api/icommercecheckmo
+    https://icommerce.imagina.com.co/api/icommercecheckmo/{orderid}
 
 
 

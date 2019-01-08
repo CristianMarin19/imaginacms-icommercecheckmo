@@ -38,6 +38,7 @@ class IcommercecheckmoServiceProvider extends ServiceProvider
     public function boot()
     {
         $this->publishConfig('icommercecheckmo', 'permissions');
+        $this->publishConfig('icommercecheckmo', 'config');
 
         $this->loadMigrationsFrom(__DIR__ . '/../Database/Migrations');
     }

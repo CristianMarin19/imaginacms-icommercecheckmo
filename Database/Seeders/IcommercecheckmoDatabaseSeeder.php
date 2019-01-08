@@ -22,7 +22,7 @@ class IcommercecheckmoDatabaseSeeder extends Seeder
         $params = array(
             'title' => trans('icommercecheckmo::icommercecheckmos.single'),
             'description' => trans('icommercecheckmo::icommercecheckmos.description'),
-            'name' => 'icommercecheckmo',
+            'name' => config('asgard.icommercecheckmo.config.paymentName'),
             'status' => 0,
             'options' => json_encode($options)
         );
