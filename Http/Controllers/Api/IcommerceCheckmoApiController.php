@@ -17,10 +17,12 @@ use Modules\Icommercecheckmo\Repositories\IcommerceCheckmoRepository;
 use Modules\Icommerce\Repositories\PaymentMethodRepository;
 use Modules\Icommerce\Repositories\TransactionRepository;
 use Modules\Icommerce\Repositories\OrderRepository;
+use Modules\Icommerce\Repositories\CurrencyRepository;
 
 use Modules\User\Contracts\Authentication;
 use Modules\User\Repositories\UserRepository;
 
+use Modules\Icommerce\Events\OrderWasCreated;
 
 class IcommerceCheckmoApiController extends BaseApiController
 {
@@ -30,6 +32,7 @@ class IcommerceCheckmoApiController extends BaseApiController
     private $order;
     private $orderController;
     private $transactionController;
+    private $currency;
     private $user;
     protected $auth;
 
@@ -37,6 +40,7 @@ class IcommerceCheckmoApiController extends BaseApiController
         IcommerceCheckmoRepository $checkmo,
         PaymentMethodRepository $paymentMethod,
         OrderRepository $order,
+        CurrencyRepository $currency,
         OrderApiController $orderController,
         TransactionApiController $transactionController,
         Authentication $auth, 
@@ -46,6 +50,7 @@ class IcommerceCheckmoApiController extends BaseApiController
         $this->checkmo = $checkmo;
         $this->paymentMethod = $paymentMethod;
         $this->order = $order;
+        $this->currency = $currency;
         $this->orderController = $orderController;
         $this->transactionController = $transactionController;
         $this->auth = $auth;
@@ -71,41 +76,38 @@ class IcommerceCheckmoApiController extends BaseApiController
 
             // Order
             $order = $this->order->find($orderID);
-            
+
+            // get currency active
+            $currency = $this->currency->getActive();
+
+            //event(new OrderWasCreated($order));
+            //exit();
+
+            $newstatusOrder = 12; // (For this module) "PROCESSED"
+
             // Create Transaction
-            /*
             $transaction = $this->validateResponseApi(
                 $this->transactionController->create(new Request([
                     'order_id' => $order->id,
                     'payment_method_id' => $paymentMethod->id,
                     'amount' => $order->total,
-                    'status' => 12 // (For this module) "PROCESSED"
+                    'status' => $newstatusOrder
                 ]))
             );
-            */
-
+    
             // Update Order Process (For this module)
-            /*
             $orderUP = $this->validateResponseApi(
-                $this->orderController->update(new Request([
+                $this->orderController->update($order->id,new Request([
                     'order_id' => $order->id,
-                    'status_id' => 12, // (For this module) "PROCESSED"
+                    'status_id' => $newstatusOrder
                 ]))
             );
-            */
-            
-            // Check login user (For this module)
-            $user = $this->auth->user();
-            if (isset($user) && !empty($user))
-                if (!empty($order))
-                    $redirectRoute = route('icommerce.orders.show', [$order->id]);
-                else
-                    $redirectRoute = route('homepage');
+           
+            // Check order(For this module)
+            if (!empty($order))
+                $redirectRoute = route('icommerce.order.showorder', [$order->id, $order->key]);
             else
-                if (!empty($order))
-                    $redirectRoute = route('icommerce.order.showorder', [$order->id, $order->key]);
-                else
-                    $redirectRoute = route('homepage');
+                $redirectRoute = route('homepage');
 
 
             // Response
@@ -139,7 +141,7 @@ class IcommerceCheckmoApiController extends BaseApiController
         
         // Check the response
         // Update Order Process (icommerce)
-        // Check login user
+        // Check order
 
     }
 

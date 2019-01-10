@@ -30,7 +30,7 @@ class EloquentIcommerceCheckmoRepository extends EloquentBaseRepository implemen
         $options['mainimage'] = $requestimage;
 
         // Extra data in Options
-        $data['options'] = json_encode($options);
+        $data['options'] = $options;
 
         $model->update($data);
 
