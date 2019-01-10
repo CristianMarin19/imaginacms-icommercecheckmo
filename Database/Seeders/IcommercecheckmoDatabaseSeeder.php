@@ -24,7 +24,7 @@ class IcommercecheckmoDatabaseSeeder extends Seeder
             'description' => trans('icommercecheckmo::icommercecheckmos.description'),
             'name' => config('asgard.icommercecheckmo.config.paymentName'),
             'status' => 0,
-            'options' => json_encode($options)
+            'options' => $options
         );
 
         PaymentMethod::create($params);

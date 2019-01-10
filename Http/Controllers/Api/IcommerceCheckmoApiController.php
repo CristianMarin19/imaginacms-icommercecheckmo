@@ -80,9 +80,9 @@ class IcommerceCheckmoApiController extends BaseApiController
             // get currency active
             $currency = $this->currency->getActive();
 
-            //event(new OrderWasCreated($order));
-            //exit();
-
+            // Testing event (esto va es en order)
+            event(new OrderWasCreated($order));
+           
             $newstatusOrder = 12; // (For this module) "PROCESSED"
 
             // Create Transaction
