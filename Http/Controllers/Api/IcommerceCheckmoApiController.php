@@ -22,8 +22,6 @@ use Modules\Icommerce\Repositories\CurrencyRepository;
 use Modules\User\Contracts\Authentication;
 use Modules\User\Repositories\UserRepository;
 
-use Modules\Icommerce\Events\OrderWasCreated;
-
 class IcommerceCheckmoApiController extends BaseApiController
 {
 
@@ -68,6 +66,8 @@ class IcommerceCheckmoApiController extends BaseApiController
         try {
 
             $orderID = $request->orderid;
+            \Log::info('Module Icommercecheckmo: Init-ID:'.$orderID);
+
             $paymentName = config('asgard.icommercecheckmo.config.paymentName');
 
             // Configuration
@@ -80,10 +80,10 @@ class IcommerceCheckmoApiController extends BaseApiController
             // get currency active
             $currency = $this->currency->getActive();
 
-            // Testing event (esto va es en order)
-            event(new OrderWasCreated($order));
-           
-            $newstatusOrder = 12; // (For this module) "PROCESSED"
+
+            $newstatusOrder = 13; // (For this module) "PROCESSED"
+
+            \Log::info('Module Icommercecheckmo: Response-ID:'.$orderID);
 
             // Create Transaction
             $transaction = $this->validateResponseApi(
