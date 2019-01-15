@@ -17,7 +17,7 @@ class IcommercecheckmoDatabaseSeeder extends Seeder
     {
         Model::unguard();
 
-        $options['mainimage'] = "";
+        $options['mainimage'] = null;
 
         $params = array(
             'title' => trans('icommercecheckmo::icommercecheckmos.single'),
