@@ -19,8 +19,6 @@ use Modules\Icommerce\Repositories\TransactionRepository;
 use Modules\Icommerce\Repositories\OrderRepository;
 use Modules\Icommerce\Repositories\CurrencyRepository;
 
-use Modules\User\Contracts\Authentication;
-use Modules\User\Repositories\UserRepository;
 
 class IcommerceCheckmoApiController extends BaseApiController
 {
@@ -29,30 +27,28 @@ class IcommerceCheckmoApiController extends BaseApiController
     private $paymentMethod;
     private $order;
     private $orderController;
+    private $transaction;
     private $transactionController;
     private $currency;
-    private $user;
-    protected $auth;
-
+    
     public function __construct(
         IcommerceCheckmoRepository $checkmo,
         PaymentMethodRepository $paymentMethod,
         OrderRepository $order,
-        CurrencyRepository $currency,
         OrderApiController $orderController,
+        TransactionRepository $transaction,
         TransactionApiController $transactionController,
-        Authentication $auth, 
-        UserRepository $user
+        CurrencyRepository $currency
     ){
 
         $this->checkmo = $checkmo;
         $this->paymentMethod = $paymentMethod;
         $this->order = $order;
-        $this->currency = $currency;
         $this->orderController = $orderController;
+        $this->transaction = $transaction;
         $this->transactionController = $transactionController;
-        $this->auth = $auth;
-        $this->user = $user;
+        $this->currency = $currency;
+        
     }
     
     /**
