@@ -8,7 +8,7 @@
 
 ### Init (Parameters = orderID)
     
-    https://icommerce.imagina.com.co/api/icommercecheckmo/{orderid}
+    https://icommerce.imagina.com.co/api/icommercecheckmo
 
 
 

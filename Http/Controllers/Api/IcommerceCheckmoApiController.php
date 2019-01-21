@@ -61,7 +61,7 @@ class IcommerceCheckmoApiController extends BaseApiController
 
         try {
 
-            $orderID = $request->orderid;
+            $orderID = $request->orderID;
             \Log::info('Module Icommercecheckmo: Init-ID:'.$orderID);
 
             $paymentName = config('asgard.icommercecheckmo.config.paymentName');

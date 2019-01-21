@@ -4,7 +4,7 @@ use Illuminate\Routing\Router;
 
 $router->group(['prefix' => 'icommercecheckmo'], function (Router $router) {
     
-    $router->get('/{orderid}', [
+    $router->get('/', [
         'as' => 'icommercecheckmo.api.checkmo.init',
         'uses' => 'IcommerceCheckmoApiController@init',
     ]);
