@@ -17,6 +17,7 @@ class IcommercecheckmoDatabaseSeeder extends Seeder
     {
         Model::unguard();
 
+        $options['init'] = "Modules\Icommercecheckmo\Http\Controllers\Api\IcommerceCheckmoApiController";
         $options['mainimage'] = null;
 
         $params = array(
