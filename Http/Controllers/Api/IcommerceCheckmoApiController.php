@@ -98,17 +98,14 @@ class IcommerceCheckmoApiController extends BaseApiController
                     'status_id' => $newstatusOrder
                 ]))
             );
-           
-            // Check order(For this module)
-            if (!empty($order))
-                $redirectRoute = route('icommerce.order.showorder', [$order->id, $order->key]);
-            else
-                $redirectRoute = route('homepage');
-
+            
+            // Nothing to reedirect
+            $redirectRoute = "";
 
             // Response
             $response = [ 'data' => [
-                "redirectRoute" => $redirectRoute
+                "redirectRoute" => $redirectRoute,
+                "external" => false
             ]];
             
             
