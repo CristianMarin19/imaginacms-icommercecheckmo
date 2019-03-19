@@ -20,15 +20,34 @@ class IcommercecheckmoDatabaseSeeder extends Seeder
         $options['init'] = "Modules\Icommercecheckmo\Http\Controllers\Api\IcommerceCheckmoApiController";
         $options['mainimage'] = null;
 
-        $params = array(
-            'title' => trans('icommercecheckmo::icommercecheckmos.single'),
-            'description' => trans('icommercecheckmo::icommercecheckmos.description'),
-            'name' => config('asgard.icommercecheckmo.config.paymentName'),
-            'status' => 0,
-            'options' => $options
-        );
+        $titleTrans = 'icommercecheckmo::icommercecheckmos.single';
+        $descriptionTrans = 'icommercecheckmo::icommercecheckmos.description';
 
-        PaymentMethod::create($params);
-       
+        foreach (['en', 'es'] as $locale) {
+
+            if($locale=='en'){
+                $params = array(
+                    'title' => trans($titleTrans),
+                    'description' => trans($descriptionTrans),
+                    'name' => config('asgard.icommercecheckmo.config.paymentName'),
+                    'status' => 0,
+                    'options' => $options
+                );
+
+                $paymentMethod = PaymentMethod::create($params);
+                
+            }else{
+
+                $title = trans($titleTrans,[],$locale);
+                $description = trans($descriptionTrans,[],$locale);
+
+                $paymentMethod->translateOrNew($locale)->title = $title;
+                $paymentMethod->translateOrNew($locale)->description = $description;
+
+                $paymentMethod->save();
+            }
+
+        }// Foreach
+ 
     }
 }
