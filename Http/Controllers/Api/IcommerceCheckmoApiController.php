@@ -76,26 +76,27 @@ class IcommerceCheckmoApiController extends BaseApiController
             // get currency active
             $currency = $this->currency->getActive();
 
-
             $newstatusOrder = 13; // (For this module) "PROCESSED"
 
             \Log::info('Module Icommercecheckmo: Response-ID:'.$orderID);
 
             // Create Transaction
             $transaction = $this->validateResponseApi(
-                $this->transactionController->create(new Request([
+                $this->transactionController->create(new Request(["attributes" => [
                     'order_id' => $order->id,
                     'payment_method_id' => $paymentMethod->id,
                     'amount' => $order->total,
                     'status' => $newstatusOrder
-                ]))
+                ]]))
             );
     
             // Update Order Process (For this module)
             $orderUP = $this->validateResponseApi(
-                $this->orderController->update($order->id,new Request([
+                $this->orderController->update($order->id,new Request(
+                ["attributes" => [
                     'order_id' => $order->id,
                     'status_id' => $newstatusOrder
+                    ]
                 ]))
             );
             
