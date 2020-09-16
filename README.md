@@ -1,8 +1,10 @@
-# asgardcms-icommercecheckmo
+# imaginacms-icommercecheckmo
 
 ## Seeder
 
-    run php artisan module:seed Icommercecheckmo
+```bash
+php artisan module:seed Icommercecheckmo
+```
 
 ## API
 

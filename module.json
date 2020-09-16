@@ -3,7 +3,7 @@
     "alias": "icommercecheckmo",
     "description": "Check or Money - PaymentMethod Module to Icommerce",
     "keywords": [],
-    "version": "1.0.0",
+    "version": "2.0.0",
 	"active": 1,
     "order": 1,
     "providers": [
