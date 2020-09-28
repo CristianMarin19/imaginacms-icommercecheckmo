@@ -17,37 +17,45 @@ class IcommercecheckmoDatabaseSeeder extends Seeder
     {
         Model::unguard();
 
-        $options['init'] = "Modules\Icommercecheckmo\Http\Controllers\Api\IcommerceCheckmoApiController";
-        $options['mainimage'] = null;
+        $name = config('asgard.icommercecheckmo.config.paymentName');
+        $result = PaymentMethod::where('name',$name)->first();
 
-        $titleTrans = 'icommercecheckmo::icommercecheckmos.single';
-        $descriptionTrans = 'icommercecheckmo::icommercecheckmos.description';
+        if(!$result){
+            $options['init'] = "Modules\Icommercecheckmo\Http\Controllers\Api\IcommerceCheckmoApiController";
+            $options['mainimage'] = null;
 
-        foreach (['en', 'es'] as $locale) {
+            $titleTrans = 'icommercecheckmo::icommercecheckmos.single';
+            $descriptionTrans = 'icommercecheckmo::icommercecheckmos.description';
 
-            if($locale=='en'){
-                $params = array(
-                    'title' => trans($titleTrans),
-                    'description' => trans($descriptionTrans),
-                    'name' => config('asgard.icommercecheckmo.config.paymentName'),
-                    'status' => 1,
-                    'options' => $options
-                );
+            foreach (['en', 'es'] as $locale) {
 
-                $paymentMethod = PaymentMethod::create($params);
-                
-            }else{
+                if($locale=='en'){
+                    $params = array(
+                        'title' => trans($titleTrans),
+                        'description' => trans($descriptionTrans),
+                        'name' => config('asgard.icommercecheckmo.config.paymentName'),
+                        'status' => 1,
+                        'options' => $options
+                    );
 
-                $title = trans($titleTrans,[],$locale);
-                $description = trans($descriptionTrans,[],$locale);
+                    $paymentMethod = PaymentMethod::create($params);
+                    
+                }else{
 
-                $paymentMethod->translateOrNew($locale)->title = $title;
-                $paymentMethod->translateOrNew($locale)->description = $description;
+                    $title = trans($titleTrans,[],$locale);
+                    $description = trans($descriptionTrans,[],$locale);
 
-                $paymentMethod->save();
-            }
+                    $paymentMethod->translateOrNew($locale)->title = $title;
+                    $paymentMethod->translateOrNew($locale)->description = $description;
 
-        }// Foreach
+                    $paymentMethod->save();
+                }
+
+            }// Foreach
+
+        }else{
+            $this->command->alert("This method has already been installed !!");
+        }
  
     }
 }
