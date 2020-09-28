@@ -1,4 +1,4 @@
-# imaginacms-icommercecheckmo
+# imaginacms-icommercecheckmo (PaymentMethod)
 
 ## Seeder
 
