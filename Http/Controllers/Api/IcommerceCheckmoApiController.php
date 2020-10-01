@@ -73,6 +73,10 @@ class IcommerceCheckmoApiController extends BaseApiController
             // Order
             $order = $this->order->find($orderID);
 
+            // Validate minimum amount order
+            if($order->total<$paymentMethod->options->minimunAmount)
+              throw new Exception('Total order minimum not allowed', 204);
+
             // get currency active
             $currency = $this->currency->getActive();
 

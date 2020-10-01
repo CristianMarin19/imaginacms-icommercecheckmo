@@ -23,6 +23,7 @@ class IcommercecheckmoDatabaseSeeder extends Seeder
         if(!$result){
             $options['init'] = "Modules\Icommercecheckmo\Http\Controllers\Api\IcommerceCheckmoApiController";
             $options['mainimage'] = null;
+            $options['minimunAmount'] = 0;
 
             $titleTrans = 'icommercecheckmo::icommercecheckmos.single';
             $descriptionTrans = 'icommercecheckmo::icommercecheckmos.description';
