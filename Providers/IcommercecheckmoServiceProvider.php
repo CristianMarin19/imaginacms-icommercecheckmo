@@ -29,7 +29,7 @@ class IcommercecheckmoServiceProvider extends ServiceProvider
         $this->app['events']->listen(BuildingSidebar::class, RegisterIcommercecheckmoSidebar::class);
 
         $this->app['events']->listen(LoadingBackendTranslations::class, function (LoadingBackendTranslations $event) {
-            $event->load('icommercecheckmos', array_dot(trans('icommercecheckmo::icommercecheckmos')));
+            $event->load('icommercecheckmos', Arr::dot(trans('icommercecheckmo::icommercecheckmos')));
             // append translations
 
         });
