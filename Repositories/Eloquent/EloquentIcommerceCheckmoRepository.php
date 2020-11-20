@@ -2,6 +2,7 @@
 
 namespace Modules\Icommercecheckmo\Repositories\Eloquent;
 
+use Illuminate\Support\Str;
 use Modules\Icommercecheckmo\Repositories\IcommerceCheckmoRepository;
 use Modules\Core\Repositories\Eloquent\EloquentBaseRepository;
 
