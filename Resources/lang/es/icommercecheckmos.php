@@ -23,4 +23,22 @@ return [
     ],
     'validation' => [
     ],
+    'methods' => [
+        'checkmo' => [
+            'title' => 'Contra Entrega',
+            'description' => 'The module description'
+        ],
+        'cash' => [
+            'title' => 'Efectivo',
+            'description' => 'The module description'
+        ],
+        'davidplata' => [
+            'title' => 'David plata',
+            'description' => 'The module description'
+        ],
+        'nequi' => [
+            'title' => 'Nequi',
+            'description' => 'The module description'
+        ],
+    ]
 ];

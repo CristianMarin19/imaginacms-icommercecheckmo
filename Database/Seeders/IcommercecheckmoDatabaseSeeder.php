@@ -17,45 +17,58 @@ class IcommercecheckmoDatabaseSeeder extends Seeder
     {
         Model::unguard();
 
-        $name = config('asgard.icommercecheckmo.config.paymentName');
-        $result = PaymentMethod::where('name',$name)->first();
+        $methods = config('asgard.icommercecheckmo.config.methods');
 
-        if(!$result){
-            $options['init'] = "Modules\Icommercecheckmo\Http\Controllers\Api\IcommerceCheckmoApiController";
-            $options['mainimage'] = null;
-            $options['minimunAmount'] = 0;
+        if(count($methods)>0){
 
-            $titleTrans = 'icommercecheckmo::icommercecheckmos.single';
-            $descriptionTrans = 'icommercecheckmo::icommercecheckmos.description';
+            $init = "Modules\Icommercecheckmo\Http\Controllers\Api\IcommerceCheckmoApiController";
 
-            foreach (['en', 'es'] as $locale) {
+            foreach ($methods as $key => $method) {
 
-                if($locale=='en'){
-                    $params = array(
-                        'title' => trans($titleTrans),
-                        'description' => trans($descriptionTrans),
-                        'name' => config('asgard.icommercecheckmo.config.paymentName'),
-                        'status' => 1,
-                        'options' => $options
-                    );
+                $result = PaymentMethod::where('name',$method['name'])->first();
 
-                    $paymentMethod = PaymentMethod::create($params);
-                    
+                if(!$result){
+
+                    $options['init'] = $init;
+
+                    $options['mainimage'] = null;
+                    $options['minimunAmount'] = 0;
+
+                    $titleTrans = $method['title'];
+                    $descriptionTrans = $method['description'];
+
+                    foreach (['en', 'es'] as $locale) {
+
+                        if($locale=='en'){
+                            $params = array(
+                                'title' => trans($titleTrans),
+                                'description' => trans($descriptionTrans),
+                                'name' => $method['name'],
+                                'status' => $method['status'],
+                                'options' => $options
+                            );
+
+                            $paymentMethod = PaymentMethod::create($params);
+                            
+                        }else{
+
+                            $title = trans($titleTrans,[],$locale);
+                            $description = trans($descriptionTrans,[],$locale);
+
+                            $paymentMethod->translateOrNew($locale)->title = $title;
+                            $paymentMethod->translateOrNew($locale)->description = $description;
+
+                            $paymentMethod->save();
+                        }
+
+                    }// Foreach
+
                 }else{
-
-                    $title = trans($titleTrans,[],$locale);
-                    $description = trans($descriptionTrans,[],$locale);
-
-                    $paymentMethod->translateOrNew($locale)->title = $title;
-                    $paymentMethod->translateOrNew($locale)->description = $description;
-
-                    $paymentMethod->save();
+                     $this->command->alert("This method: {$method['name']} has already been installed !!");
                 }
-
-            }// Foreach
-
+            }
         }else{
-            $this->command->alert("This method has already been installed !!");
+           $this->command->alert("No methods in the Config File !!"); 
         }
  
     }
