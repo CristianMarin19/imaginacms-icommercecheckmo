@@ -18,10 +18,10 @@ return [
             'name' => 'icommercecash',
     		'status' => 0
     	],
-    	//Davidplata
+    	//Daviplata
     	[
-    		'title' => 'icommercecheckmo::icommercecheckmos.methods.davidplata.title',
-    		'description' => 'icommercecheckmo::icommercecheckmos.methods.davidplata.description',
+    		'title' => 'icommercecheckmo::icommercecheckmos.methods.daviplata.title',
+    		'description' => 'icommercecheckmo::icommercecheckmos.methods.daviplata.description',
             'name' => 'icommercedavidplata',
     		'status' => 0
     	],

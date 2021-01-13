@@ -32,8 +32,8 @@ return [
             'title' => 'Cash',
             'description' => 'The module description'
         ],
-        'davidplata' => [
-            'title' => 'David plata',
+        'daviplata' => [
+            'title' => 'Daviplata',
             'description' => 'The module description'
         ],
         'nequi' => [
