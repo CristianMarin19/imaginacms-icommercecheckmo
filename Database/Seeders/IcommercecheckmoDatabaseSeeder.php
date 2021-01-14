@@ -48,6 +48,9 @@ class IcommercecheckmoDatabaseSeeder extends Seeder
                                 'options' => $options
                             );
 
+                            if(isset($method['parent_name']))
+                                $params['parent_name'] = $method['parent_name'];
+
                             $paymentMethod = PaymentMethod::create($params);
                             
                         }else{

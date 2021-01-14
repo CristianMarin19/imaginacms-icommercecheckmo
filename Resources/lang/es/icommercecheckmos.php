@@ -26,19 +26,19 @@ return [
     'methods' => [
         'checkmo' => [
             'title' => 'Contra Entrega',
-            'description' => 'The module description'
+            'description' => 'La descripcion del Modulo'
         ],
         'cash' => [
             'title' => 'Efectivo',
-            'description' => 'The module description'
+            'description' => 'La descripcion del Modulo'
         ],
         'daviplata' => [
             'title' => 'Daviplata',
-            'description' => 'The module description'
+            'description' => 'La descripcion del Modulo'
         ],
         'nequi' => [
             'title' => 'Nequi',
-            'description' => 'The module description'
+            'description' => 'La descripcion del Modulo'
         ],
     ]
 ];
