@@ -8,16 +8,13 @@ use Illuminate\Http\Response;
 
 // Base Api
 use Modules\Icommerce\Http\Controllers\Api\OrderApiController;
-use Modules\Icommerce\Http\Controllers\Api\TransactionApiController;
 use Modules\Ihelpers\Http\Controllers\Api\BaseApiController;
 
 // Repositories
 use Modules\Icommercecheckmo\Repositories\IcommerceCheckmoRepository;
 
 use Modules\Icommerce\Repositories\PaymentMethodRepository;
-use Modules\Icommerce\Repositories\TransactionRepository;
 use Modules\Icommerce\Repositories\OrderRepository;
-use Modules\Icommerce\Repositories\CurrencyRepository;
 
 
 class IcommerceCheckmoApiController extends BaseApiController
@@ -27,28 +24,18 @@ class IcommerceCheckmoApiController extends BaseApiController
     private $paymentMethod;
     private $order;
     private $orderController;
-    private $transaction;
-    private $transactionController;
-    private $currency;
-    
+   
     public function __construct(
         IcommerceCheckmoRepository $checkmo,
         PaymentMethodRepository $paymentMethod,
         OrderRepository $order,
-        OrderApiController $orderController,
-        TransactionRepository $transaction,
-        TransactionApiController $transactionController,
-        CurrencyRepository $currency
+        OrderApiController $orderController
     ){
 
         $this->checkmo = $checkmo;
         $this->paymentMethod = $paymentMethod;
         $this->order = $order;
         $this->orderController = $orderController;
-        $this->transaction = $transaction;
-        $this->transactionController = $transactionController;
-        $this->currency = $currency;
-        
     }
     
     /**
@@ -77,33 +64,6 @@ class IcommerceCheckmoApiController extends BaseApiController
             if(isset($paymentMethod->options->minimunAmount) && $order->total<$paymentMethod->options->minimunAmount)
               throw new \Exception('Total order minimum not allowed', 204);
 
-            // get currency active
-            $currency = $this->currency->getActive();
-
-            $newstatusOrder = 13; // (For this module) "PROCESSED"
-
-            \Log::info('Module Icommercecheckmo: Response-ID:'.$orderID);
-
-            // Create Transaction
-            $transaction = $this->validateResponseApi(
-                $this->transactionController->create(new Request(["attributes" => [
-                    'order_id' => $order->id,
-                    'payment_method_id' => $paymentMethod->id,
-                    'amount' => $order->total,
-                    'status' => $newstatusOrder
-                ]]))
-            );
-    
-            // Update Order Process (For this module)
-            $orderUP = $this->validateResponseApi(
-                $this->orderController->update($order->id,new Request(
-                ["attributes" => [
-                    'order_id' => $order->id,
-                    'status_id' => $newstatusOrder
-                    ]
-                ]))
-            );
-            
             // Nothing to reedirect
             $redirectRoute = "";
 
@@ -112,7 +72,8 @@ class IcommerceCheckmoApiController extends BaseApiController
                 "redirectRoute" => $redirectRoute,
                 "external" => false
             ]];
-            
+
+            \Log::info('Module Icommercecheckmo: END');
             
           } catch (\Exception $e) {
             //Message Error
