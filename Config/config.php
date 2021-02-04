@@ -10,7 +10,7 @@ return [
     	// Contraentrega
     	[
     		'title' => 'icommercecheckmo::icommercecheckmos.methods.checkmo.title',
-    		'description' => 'icommerceagree::icommerceagrees.methods.checkmo.description',
+    		'description' => 'icommercecheckmo::icommercecheckmos.methods.checkmo.description',
             'name' => 'icommercecheckmo',
     		'status' => 1,
     	],
