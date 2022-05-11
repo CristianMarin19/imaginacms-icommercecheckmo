@@ -54,8 +54,10 @@ class IcommerceCheckmoApiController extends BaseApiController
             $paymentName = config('asgard.icommercecheckmo.config.paymentName');
 
             // Configuration
-            $attribute = array('name' => $paymentName);
-            $paymentMethod = $this->paymentMethod->findByAttributes($attribute);
+            $params['filter'] = [
+                'field' => 'name'
+            ];
+            $paymentMethod = app("Modules\Icommerce\Repositories\PaymentMethodRepository")->getItem($paymentName,json_decode(json_encode($params)));
 
             // Order
             $order = $this->order->find($orderID);
