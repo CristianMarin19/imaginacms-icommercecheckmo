@@ -13,11 +13,15 @@ class IcommercecheckmoDatabaseSeeder extends Seeder
      *
      * @return void
      */
-    public function run()
+    public function run($methodsFromOther=null)
     {
         Model::unguard();
 
         $methods = config('asgard.icommercecheckmo.config.methods');
+
+        //Only the methods that match with the config
+        if(!is_null($methodsFromOther))
+            $methods = array_intersect_key($methods,$methodsFromOther);
 
         if(count($methods)>0){
 
