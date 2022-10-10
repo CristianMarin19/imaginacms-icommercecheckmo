@@ -17,6 +17,7 @@ class IcommercecheckmoDatabaseSeeder extends Seeder
     {
         Model::unguard();
 
+        $this->call(IcommercecheckmoModuleTableSeeder::class);
         $methods = config('asgard.icommercecheckmo.config.methods');
 
         //Only the methods that match with the config

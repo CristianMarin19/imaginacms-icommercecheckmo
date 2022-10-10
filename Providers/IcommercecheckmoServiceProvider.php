@@ -42,7 +42,7 @@ class IcommercecheckmoServiceProvider extends ServiceProvider
         $this->publishConfig('icommercecheckmo', 'config');
         $this->publishConfig('icommercecheckmo', 'crud-fields');
 
-        $this->loadMigrationsFrom(__DIR__ . '/../Database/Migrations');
+        //$this->loadMigrationsFrom(__DIR__ . '/../Database/Migrations');
     }
 
     /**
