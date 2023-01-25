@@ -42,6 +42,20 @@ class IcommercecheckmoDatabaseSeeder extends Seeder
                     $titleTrans = $method['title'];
                     $descriptionTrans = $method['description'];
 
+                    $params = array(
+                        'name' => $method['name'],
+                        'status' => $method['status'],
+                        'options' => $options
+                    );
+
+                    if(isset($method['parent_name']))
+                        $params['parent_name'] = $method['parent_name'];
+
+                        $paymentMethod = PaymentMethod::create($params);
+
+                        $this->addTranslation($paymentMethod,'en',$titleTrans,$descriptionTrans);
+                        $this->addTranslation($paymentMethod,'es',$titleTrans,$descriptionTrans);
+                    /*
                     foreach (['en', 'es'] as $locale) {
 
                         if($locale=='en'){
@@ -70,6 +84,7 @@ class IcommercecheckmoDatabaseSeeder extends Seeder
                         }
 
                     }// Foreach
+                    */
 
                 }else{
                      $this->command->alert("This method: {$method['name']} has already been installed !!");
@@ -80,4 +95,20 @@ class IcommercecheckmoDatabaseSeeder extends Seeder
         }
  
     }
+
+    /*
+    * Add Translations
+    * PD: New Alternative method due to problems with astronomic translatable
+    **/
+    public function addTranslation($paymentMethod,$locale,$title,$description){
+
+        \DB::table('icommerce__payment_method_translations')->insert([
+            'title' => trans($title,[],$locale),
+            'description' => trans($description,[],$locale),
+            'payment_method_id' => $paymentMethod->id,
+            'locale' => $locale
+        ]);
+  
+    }
+
 }
