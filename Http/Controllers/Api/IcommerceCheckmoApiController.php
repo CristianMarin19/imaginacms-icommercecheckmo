@@ -49,7 +49,7 @@ class IcommerceCheckmoApiController extends BaseApiController
         try {
 
             $orderID = $request->orderID;
-            \Log::info('Module Icommercecheckmo: Init-ID:'.$orderID);
+            \Log::info('Icommercecheckmo: Init|orderID:'.$orderID);
 
             $paymentName = config('asgard.icommercecheckmo.config.paymentName');
 
@@ -62,6 +62,9 @@ class IcommerceCheckmoApiController extends BaseApiController
             // Order
             $order = $this->order->find($orderID);
 
+            if(is_null($order))
+                \Log::info('Icommercecheckmo: Init|order not found');
+               
             // Validate minimum amount order
             if(isset($paymentMethod->options->minimunAmount) && $order->total<$paymentMethod->options->minimunAmount)
               throw new \Exception('Total order minimum not allowed', 204);
@@ -75,7 +78,7 @@ class IcommerceCheckmoApiController extends BaseApiController
                 "external" => false
             ]];
 
-            \Log::info('Module Icommercecheckmo: END');
+            \Log::info('Icommercecheckmo: Init|Finished');
             
           } catch (\Exception $e) {
             //Message Error
