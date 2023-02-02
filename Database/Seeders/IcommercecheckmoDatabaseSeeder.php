@@ -45,46 +45,18 @@ class IcommercecheckmoDatabaseSeeder extends Seeder
                     $params = array(
                         'name' => $method['name'],
                         'status' => $method['status'],
-                        'options' => $options
+                        'options' => $options,
+                        'organization_id' => isset(tenant()->id) ? tenant()->id : null
                     );
 
                     if(isset($method['parent_name']))
                         $params['parent_name'] = $method['parent_name'];
 
-                        $paymentMethod = PaymentMethod::create($params);
+                    $paymentMethod = PaymentMethod::create($params);
 
-                        $this->addTranslation($paymentMethod,'en',$titleTrans,$descriptionTrans);
-                        $this->addTranslation($paymentMethod,'es',$titleTrans,$descriptionTrans);
-                    /*
-                    foreach (['en', 'es'] as $locale) {
-
-                        if($locale=='en'){
-                            $params = array(
-                                'title' => trans($titleTrans),
-                                'description' => trans($descriptionTrans),
-                                'name' => $method['name'],
-                                'status' => $method['status'],
-                                'options' => $options
-                            );
-
-                            if(isset($method['parent_name']))
-                                $params['parent_name'] = $method['parent_name'];
-
-                            $paymentMethod = PaymentMethod::create($params);
-                            
-                        }else{
-
-                            $title = trans($titleTrans,[],$locale);
-                            $description = trans($descriptionTrans,[],$locale);
-
-                            $paymentMethod->translateOrNew($locale)->title = $title;
-                            $paymentMethod->translateOrNew($locale)->description = $description;
-
-                            $paymentMethod->save();
-                        }
-
-                    }// Foreach
-                    */
+                    $this->addTranslation($paymentMethod,'en',$titleTrans,$descriptionTrans);
+                    $this->addTranslation($paymentMethod,'es',$titleTrans,$descriptionTrans);
+                    
 
                 }else{
                      $this->command->alert("This method: {$method['name']} has already been installed !!");
